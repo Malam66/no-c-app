@@ -95,6 +95,9 @@
             transition: all 0.3s ease;
             margin: 10px 0;
             box-shadow: 0 3px 10px rgba(0, 102, 255, 0.3);
+            cursor: pointer;
+            border: none;
+            width: 100%;
         }
 
         .download-link:hover {
@@ -169,13 +172,13 @@
             <button class="install-btn" onclick="runApp()">🚀 RUN APP NOW</button>
             
             <div class="download-links">
-                <button class="download-link" onclick="downloadInstaller()" style="cursor: pointer; border: none; width: 100%;">
+                <button class="download-link" onclick="downloadInstaller()">
                     📦 Download Installer (Recommended)
                 </button>
-                <button class="download-link" onclick="downloadExecutable()" style="cursor: pointer; border: none; width: 100%;">
+                <button class="download-link" onclick="downloadExecutable()">
                     🚀 Download Executable
                 </button>
-                <button class="download-link" onclick="downloadSource()" style="cursor: pointer; border: none; width: 100%;">
+                <button class="download-link" onclick="downloadSource()">
                     🐍 Download Source Code
                 </button>
             </div>
@@ -208,90 +211,72 @@
             status.style.display = 'block';
         }
 
-        function installApp() {
-            showStatus('📥 Downloading Ultimate Anti-Recoil App...', 'success');
+        function downloadFile(filename, downloadName) {
+            showStatus(`📥 Downloading ${downloadName}...`, 'success');
             
-            // Actually download the installer
             const link = document.createElement('a');
-            link.href = 'installer.bat';
-            link.download = 'UltimateAntiRecoilApp_Installer.bat';
+            link.href = filename;
+            link.download = downloadName;
             link.style.display = 'none';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
             
             setTimeout(() => {
+                showStatus(`✅ ${downloadName} downloaded successfully!`, 'success');
+            }, 1000);
+        }
+
+        function installApp() {
+            showStatus('📥 Downloading Ultimate Anti-Recoil App Installer...', 'success');
+            
+            // Download the installer
+            downloadFile('installer.bat', 'UltimateAntiRecoilApp_Installer.bat');
+            
+            setTimeout(() => {
                 showStatus('🔧 Installer downloaded! Run the .bat file to install.', 'success');
                 
                 setTimeout(() => {
-                    showStatus('📁 Installation will create desktop shortcut automatically.', 'success');
+                    showStatus('📁 Installation will create desktop shortcut with nice icon!', 'success');
                     
                     setTimeout(() => {
-                        showStatus('✅ Click "RUN APP NOW" to download executable directly.', 'success');
+                        showStatus('✅ Desktop icon will be created automatically!', 'success');
                     }, 2000);
                 }, 2000);
             }, 1000);
         }
 
         function runApp() {
-            showStatus('🚀 Starting Ultimate Anti-Recoil App...', 'success');
+            showStatus('🚀 Downloading Ultimate Anti-Recoil App Executable...', 'success');
             
-            // Create download link for the app
-            const link = document.createElement('a');
-            link.href = 'installer.bat';
-            link.download = 'UltimateAntiRecoilApp_Installer.bat';
-            link.style.display = 'none';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            // Download the executable
+            downloadFile('UltimateAntiRecoilApp.exe', 'UltimateAntiRecoilApp.exe');
             
             setTimeout(() => {
-                showStatus('🎯 App is starting! Check your desktop for the shortcut.', 'success');
+                showStatus('🎯 Executable downloaded! Run it directly.', 'success');
                 
-                // Show instructions
                 setTimeout(() => {
-                    alert('🎯 ULTIMATE ANTI-RECOIL APP\n\n✅ Installation Complete!\n\n📋 How to use:\n1. Click "START NEW APP" in the GUI\n2. Turn on CAPS LOCK to enable\n3. Hold left mouse button while aiming\n4. Turn off CAPS LOCK to disable\n\n🎮 Features:\n• Advanced anti-recoil\n• Auto-strength adjustment\n• Real-time monitoring\n• Works with ALL games\n• No detection risk\n\n🚀 App is ready to use!');
+                    alert('🎯 ULTIMATE ANTI-RECOIL APP\n\n✅ Executable Downloaded!\n\n📋 How to use:\n1. Run the downloaded .exe file\n2. Turn on CAPS LOCK to enable\n3. Hold left mouse button while aiming\n4. Turn off CAPS LOCK to disable\n\n🎮 Features:\n• Advanced anti-recoil\n• Auto-strength adjustment\n• Real-time monitoring\n• Works with ALL games\n• No detection risk\n\n🚀 App is ready to use!');
                 }, 1000);
             }, 1000);
         }
 
         function downloadInstaller() {
-            showStatus('📦 Downloading installer...', 'success');
-            const link = document.createElement('a');
-            link.href = 'installer.bat';
-            link.download = 'UltimateAntiRecoilApp_Installer.bat';
-            link.style.display = 'none';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            downloadFile('installer.bat', 'UltimateAntiRecoilApp_Installer.bat');
             setTimeout(() => {
-                showStatus('✅ Installer downloaded! Run the .bat file to install.', 'success');
+                showStatus('✅ Installer downloaded! Run it to create desktop shortcut with nice icon!', 'success');
             }, 1000);
         }
 
         function downloadExecutable() {
-            showStatus('🚀 Downloading executable...', 'success');
-            const link = document.createElement('a');
-            link.href = 'UltimateAntiRecoilApp.exe';
-            link.download = 'UltimateAntiRecoilApp.exe';
-            link.style.display = 'none';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            downloadFile('UltimateAntiRecoilApp.exe', 'UltimateAntiRecoilApp.exe');
             setTimeout(() => {
-                showStatus('✅ Executable downloaded! Run it directly.', 'success');
+                showStatus('✅ Executable downloaded! Run it directly!', 'success');
             }, 1000);
         }
 
         function downloadSource() {
-            showStatus('🐍 Downloading source code...', 'success');
-            const link = document.createElement('a');
-            link.href = 'new_ultimate_app.py';
-            link.download = 'UltimateAntiRecoilApp.py';
-            link.style.display = 'none';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            downloadFile('new_ultimate_app.py', 'UltimateAntiRecoilApp.py');
             setTimeout(() => {
                 showStatus('✅ Source code downloaded!', 'success');
             }, 1000);
