@@ -33,7 +33,7 @@ A professional Windows application for anti-recoil functionality with a beautifu
 
 ```bash
 # Clone the repository
-git clone https://github.com/malam66/ultimate-anti-recoil-app.git
+git clone https://github.com/Malam66/strong-app.git
 cd ultimate-anti-recoil-app
 
 # Install dependencies
