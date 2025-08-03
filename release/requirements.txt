@@ -1,0 +1,4 @@
+tkinter
+pynput
+keyboard
+mouse
