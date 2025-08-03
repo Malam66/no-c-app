@@ -42,11 +42,20 @@ class NewUltimateApp:
         self.aim_assist_target_size = tk.IntVar(value=20)
         self.auto_target_detection = tk.BooleanVar(value=True)
         
+        # Mouse tracking for aim assist
+        self.last_mouse_x = 0
+        self.last_mouse_y = 0
+        self.mouse_moving = False
+        self.aim_assist_active = False
+        
         # Setup UI
         self.setup_ui()
         
         # Start auto-update loop
         self.start_auto_update_loop()
+        
+        # Start mouse tracking for aim assist
+        self.start_mouse_tracking()
         
     def setup_ui(self):
         """New ultimate UI with aim assist"""
@@ -377,22 +386,29 @@ class NewUltimateApp:
             return None
     
     def move_mouse_aim_assist(self, dx, dy):
-        """Move mouse with aim assist"""
+        """Move mouse with aim assist - optimized for games"""
         try:
             smoothness = self.aim_assist_smoothness.get()
             
+            # Ensure minimum movement for game responsiveness
+            if abs(dx) < 1 and abs(dy) < 1:
+                return True
+            
             # Calculate movement per step
-            step_x = dx // smoothness
-            step_y = dy // smoothness
+            step_x = dx // max(1, smoothness)
+            step_y = dy // max(1, smoothness)
             
             # Move mouse smoothly with aim assist
-            for i in range(smoothness):
+            for i in range(max(1, smoothness)):
                 # Add slight random variation for natural movement
                 variation_x = random.randint(-1, 1)
                 variation_y = random.randint(-1, 1)
                 
+                # Use direct mouse movement for better game compatibility
                 user32.mouse_event(0x0001, step_x + variation_x, step_y + variation_y, 0, 0)
-                time.sleep(random.uniform(0.001, 0.005))  # Very fast for aim assist
+                
+                # Faster timing for better game responsiveness
+                time.sleep(random.uniform(0.001, 0.003))
             
             return True
         except Exception as e:
@@ -541,6 +557,93 @@ class NewUltimateApp:
         self.new_thread = threading.Thread(target=new_loop, daemon=True)
         self.new_thread.start()
     
+    def start_mouse_tracking(self):
+        """Start tracking mouse movement for aim assist"""
+        def track_mouse():
+            while True:
+                try:
+                    # Get current mouse position
+                    cursor = ctypes.wintypes.POINT()
+                    user32.GetCursorPos(ctypes.byref(cursor))
+                    current_x, current_y = cursor.x, cursor.y
+                    
+                    # Check if mouse is moving
+                    if abs(current_x - self.last_mouse_x) > 2 or abs(current_y - self.last_mouse_y) > 2:
+                        self.mouse_moving = True
+                        self.last_mouse_x = current_x
+                        self.last_mouse_y = current_y
+                        
+                        # Apply aim assist if enabled and running
+                        if self.running and self.aim_assist_enabled.get() and self.auto_target_detection.get():
+                            self.apply_aim_assist(current_x, current_y)
+                    else:
+                        self.mouse_moving = False
+                    
+                    time.sleep(0.01)  # Check every 10ms
+                except:
+                    time.sleep(0.1)
+        
+        # Start mouse tracking in separate thread
+        mouse_thread = threading.Thread(target=track_mouse, daemon=True)
+        mouse_thread.start()
+    
+    def apply_aim_assist(self, current_x, current_y):
+        """Apply aim assist to current mouse movement"""
+        try:
+            if not self.aim_assist_active:
+                strength = self.aim_assist_strength.get()
+                fov = self.aim_assist_fov.get()
+                
+                # Simulate target detection (in real implementation, this would use game memory/vision)
+                target = self.detect_real_target(current_x, current_y, fov)
+                
+                if target:
+                    target_x, target_y = target
+                    
+                    # Calculate aim assist movement
+                    aim_dx = int(target_x * strength / 100)
+                    aim_dy = int(target_y * strength / 100)
+                    
+                    # Apply smooth aim assist movement
+                    self.move_mouse_aim_assist(aim_dx, aim_dy)
+                    
+                    # Update debug info
+                    self.debug_label.config(text=f"🎯 Aim assist: Target detected at ({target_x}, {target_y})")
+                    
+                    # Prevent spam
+                    self.aim_assist_active = True
+                    threading.Timer(0.1, self.reset_aim_assist).start()
+                    
+        except Exception as e:
+            self.debug_label.config(text=f"❌ Aim assist error: {str(e)}")
+    
+    def detect_real_target(self, mouse_x, mouse_y, fov):
+        """Detect real targets for aim assist (simulated for now)"""
+        try:
+            # In a real implementation, this would:
+            # 1. Read game memory for enemy positions
+            # 2. Use computer vision to detect enemies
+            # 3. Calculate distance and angle to targets
+            
+            # For now, simulate target detection based on mouse movement
+            if self.mouse_moving and random.random() < 0.3:  # 30% chance to detect "target"
+                # Simulate target offset from current mouse position
+                target_offset_x = random.randint(-fov//2, fov//2)
+                target_offset_y = random.randint(-fov//2, fov//2)
+                
+                # Only return target if within FOV
+                distance = math.sqrt(target_offset_x**2 + target_offset_y**2)
+                if distance <= fov//2:
+                    return (target_offset_x, target_offset_y)
+            
+            return None
+        except:
+            return None
+    
+    def reset_aim_assist(self):
+        """Reset aim assist active flag"""
+        self.aim_assist_active = False
+
     def on_closing(self):
         """Handle closing"""
         if self.running:
