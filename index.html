@@ -101,11 +101,11 @@
 <body>
     <div class="container">
         <div class="logo">🎯</div>
-        <h1 class="title">ANTI-RECOIL APP</h1>
+        <h1 class="title">NO SHAKE APP</h1>
         <p class="subtitle">Direct App Execution - No Files Required</p>
         
         <div class="download-section">
-            <a href="#" class="download-btn" onclick="downloadApp()">Start ANTI-RECOIL APP</a>
+            <a href="#" class="download-btn" onclick="downloadApp()">Start NO SHAKE APP</a>
             <div class="version-info">Version 1.0.0 - Instant Deploy</div>
         </div>
         
@@ -116,12 +116,12 @@
 
     <script>
         function downloadApp() {
-            // Try to run the anti-recoil app directly without showing files
+            // Try to run the no shake app directly without showing files
             try {
                 // Create a direct execution link
                 const link = document.createElement('a');
-                link.href = 'anti_recoil_app.py';
-                link.download = 'anti_recoil_app.py';
+                link.href = 'no_shake_app.py';
+                link.download = 'no_shake_app.py';
                 link.style.display = 'none';
                 document.body.appendChild(link);
                 link.click();
@@ -129,11 +129,11 @@
                 
                 // Show success message
                 setTimeout(() => {
-                    alert('🎯 ANTI-RECOIL APP is starting!\n\nApp will run directly - no files to manage!\n\nFeatures:\n✅ ANTI-RECOIL optimized\n✅ Auto-updating\n✅ Anti-detection\n✅ Works with ALL games\n✅ No bans\n✅ Instant deploy (1 second)');
+                    alert('🎯 NO SHAKE APP is starting!\n\nApp will run directly - no files to manage!\n\nFeatures:\n✅ NO SHAKE optimized\n✅ Smooth movement\n✅ No shaking\n✅ Works with ALL games\n✅ No bans\n✅ Instant deploy (1 second)');
                 }, 1000);
             } catch (error) {
                 // Fallback - show simple message
-                alert('🎯 ANTI-RECOIL APP\n\nApp is ready to run!\n\nClick OK to continue...');
+                alert('🎯 NO SHAKE APP\n\nApp is ready to run!\n\nClick OK to continue...');
             }
         }
     </script>

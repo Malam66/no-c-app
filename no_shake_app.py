@@ -37,10 +37,10 @@ except:
     windows_api_available = False
     print("Windows API not available")
 
-class FixedUltimateApp:
+class NoShakeApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("🎯 FIXED ULTIMATE APP")
+        self.root.title("🎯 NO SHAKE APP")
         self.root.geometry("700x800")
         self.root.configure(bg='#000000')
         self.root.resizable(False, False)
@@ -52,10 +52,10 @@ class FixedUltimateApp:
         self.error_count = 0
         self.success_count = 0
         
-        # Variables
-        self.aimdown = tk.IntVar(value=5)
-        self.delay = tk.DoubleVar(value=0.03)
-        self.smoothness = tk.IntVar(value=8)
+        # Variables - optimized for no shaking
+        self.aimdown = tk.IntVar(value=3)  # Lower default
+        self.delay = tk.DoubleVar(value=0.05)  # Higher delay
+        self.smoothness = tk.IntVar(value=15)  # Higher smoothness
         self.auto_strength = tk.BooleanVar(value=True)
         
         # Setup UI
@@ -65,13 +65,13 @@ class FixedUltimateApp:
         self.start_auto_update_loop()
         
     def setup_ui(self):
-        """Fixed ultimate UI"""
+        """No shake UI"""
         # Main frame
         main_frame = tk.Frame(self.root, bg='#000000', padx=20, pady=20)
         main_frame.pack(fill='both', expand=True)
         
         # Title
-        title_label = tk.Label(main_frame, text="🎯 FIXED ULTIMATE APP", 
+        title_label = tk.Label(main_frame, text="🎯 NO SHAKE APP", 
                               font=('Arial', 20, 'bold'), 
                               fg='#00ff00', bg='#000000')
         title_label.pack(pady=(0, 20))
@@ -83,7 +83,7 @@ class FixedUltimateApp:
         self.status_label.pack(pady=10)
         
         # Start button
-        self.start_button = tk.Button(main_frame, text="START FIXED APP", 
+        self.start_button = tk.Button(main_frame, text="START NO SHAKE", 
                                      font=('Arial', 14, 'bold'),
                                      bg='#00ff00', fg='#000000',
                                      relief='flat', padx=30, pady=15,
@@ -94,7 +94,7 @@ class FixedUltimateApp:
         control_frame = tk.Frame(main_frame, bg='#111111', relief='raised', bd=2)
         control_frame.pack(fill='x', pady=15)
         
-        tk.Label(control_frame, text="🎯 FIXED APP CONTROL", 
+        tk.Label(control_frame, text="🎯 NO SHAKE CONTROL", 
                 font=('Arial', 14, 'bold'), 
                 fg='#00ff00', bg='#111111').pack(pady=8)
         
@@ -102,44 +102,44 @@ class FixedUltimateApp:
         auto_frame = tk.Frame(control_frame, bg='#111111')
         auto_frame.pack(fill='x', padx=15, pady=8)
         
-        tk.Checkbutton(auto_frame, text="AUTO STRENGTH (Smart adaptation)", 
+        tk.Checkbutton(auto_frame, text="AUTO STRENGTH (No shake adaptation)", 
                       variable=self.auto_strength, bg='#111111', fg='#ffffff',
                       selectcolor='#333333', activebackground='#111111',
                       activeforeground='#ffffff', font=('Arial', 11)).pack(anchor='w')
         
-        # Aimdown
+        # Aimdown - optimized for no shaking
         aimdown_frame = tk.Frame(control_frame, bg='#111111')
         aimdown_frame.pack(fill='x', padx=15, pady=8)
         
-        tk.Label(aimdown_frame, text="AIMDOWN (Lower = Smoother):", bg='#111111', fg='#ffffff', font=('Arial', 11)).pack(anchor='w')
+        tk.Label(aimdown_frame, text="AIMDOWN (Lower = No Shake):", bg='#111111', fg='#ffffff', font=('Arial', 11)).pack(anchor='w')
         
-        aimdown_slider = tk.Scale(aimdown_frame, from_=1, to=25,
+        aimdown_slider = tk.Scale(aimdown_frame, from_=1, to=10,  # Reduced range
                                  variable=self.aimdown, orient='horizontal', 
                                  bg='#111111', fg='#ffffff',
                                  highlightbackground='#111111', troughcolor='#333333',
                                  length=300)
         aimdown_slider.pack(fill='x', pady=5)
         
-        # Delay
+        # Delay - optimized for smooth movement
         delay_frame = tk.Frame(control_frame, bg='#111111')
         delay_frame.pack(fill='x', padx=15, pady=8)
         
-        tk.Label(delay_frame, text="DELAY (Higher = Smoother):", bg='#111111', fg='#ffffff', font=('Arial', 11)).pack(anchor='w')
+        tk.Label(delay_frame, text="DELAY (Higher = No Shake):", bg='#111111', fg='#ffffff', font=('Arial', 11)).pack(anchor='w')
         
-        delay_slider = tk.Scale(delay_frame, from_=0.00, to=0.20, resolution=0.01,
+        delay_slider = tk.Scale(delay_frame, from_=0.01, to=0.15, resolution=0.01,  # Optimized range
                                variable=self.delay, orient='horizontal', 
                                bg='#111111', fg='#ffffff',
                                highlightbackground='#111111', troughcolor='#333333',
                                length=300)
         delay_slider.pack(fill='x', pady=5)
         
-        # Smoothness
+        # Smoothness - optimized for no shaking
         smoothness_frame = tk.Frame(control_frame, bg='#111111')
         smoothness_frame.pack(fill='x', padx=15, pady=8)
         
-        tk.Label(smoothness_frame, text="SMOOTHNESS (Higher = Smoother):", bg='#111111', fg='#ffffff', font=('Arial', 11)).pack(anchor='w')
+        tk.Label(smoothness_frame, text="SMOOTHNESS (Higher = No Shake):", bg='#111111', fg='#ffffff', font=('Arial', 11)).pack(anchor='w')
         
-        smoothness_slider = tk.Scale(smoothness_frame, from_=1, to=25,
+        smoothness_slider = tk.Scale(smoothness_frame, from_=10, to=30,  # Higher range
                                    variable=self.smoothness, orient='horizontal', 
                                    bg='#111111', fg='#ffffff',
                                    highlightbackground='#111111', troughcolor='#333333',
@@ -150,12 +150,12 @@ class FixedUltimateApp:
         info_frame = tk.Frame(main_frame, bg='#111111', relief='raised', bd=2)
         info_frame.pack(fill='x', pady=15)
         
-        tk.Label(info_frame, text="📊 FIXED APP INFO", 
+        tk.Label(info_frame, text="📊 NO SHAKE INFO", 
                 font=('Arial', 14, 'bold'), 
                 fg='#00ff00', bg='#111111').pack(pady=8)
         
         self.info_label = tk.Label(info_frame, 
-                                  text="Fixed app ready - auto-updating active", 
+                                  text="No shake app ready - smooth movement active", 
                                   font=('Arial', 11), 
                                   fg='#cccccc', bg='#111111', justify='left')
         self.info_label.pack(anchor='w', padx=15, pady=8)
@@ -164,7 +164,7 @@ class FixedUltimateApp:
         debug_frame = tk.Frame(main_frame, bg='#111111', relief='raised', bd=2)
         debug_frame.pack(fill='x', pady=15)
         
-        tk.Label(debug_frame, text="📊 FIXED APP DEBUG", 
+        tk.Label(debug_frame, text="📊 NO SHAKE DEBUG", 
                 font=('Arial', 14, 'bold'), 
                 fg='#00ff00', bg='#111111').pack(pady=8)
         
@@ -178,12 +178,12 @@ class FixedUltimateApp:
         instructions_frame = tk.Frame(main_frame, bg='#111111', relief='raised', bd=2)
         instructions_frame.pack(fill='x', pady=15)
         
-        tk.Label(instructions_frame, text="📋 FIXED APP INSTRUCTIONS", 
+        tk.Label(instructions_frame, text="📋 NO SHAKE INSTRUCTIONS", 
                 font=('Arial', 14, 'bold'), 
                 fg='#00ff00', bg='#111111').pack(pady=8)
         
         instructions = tk.Label(instructions_frame, 
-                              text="1. Click START FIXED APP\n2. Turn CAPS LOCK ON\n3. Go to ANY game\n4. Hold left mouse button\n5. Auto-updates and error fixes",
+                              text="1. Click START NO SHAKE\n2. Turn CAPS LOCK ON\n3. Go to ANY game\n4. Hold left mouse button\n5. Smooth movement - no shaking",
                               font=('Arial', 11), 
                               fg='#cccccc', bg='#111111', justify='left')
         instructions.pack(anchor='w', padx=15, pady=8)
@@ -192,7 +192,7 @@ class FixedUltimateApp:
         hotkey_frame = tk.Frame(main_frame, bg='#111111', relief='raised', bd=2)
         hotkey_frame.pack(fill='x', pady=15)
         
-        tk.Label(hotkey_frame, text="⌨️ FIXED APP HOTKEYS", 
+        tk.Label(hotkey_frame, text="⌨️ NO SHAKE HOTKEYS", 
                 font=('Arial', 14, 'bold'), 
                 fg='#ffff00', bg='#111111').pack(pady=8)
         
@@ -223,37 +223,38 @@ class FixedUltimateApp:
         """Toggle the script on/off"""
         if not self.running:
             self.running = True
-            self.status_label.config(text="🟢 FIXED APP RUNNING", fg='#00ff00')
-            self.start_button.config(text="STOP FIXED APP", bg='#ff0000')
-            self.debug_label.config(text="Fixed app started - auto-updating active...")
+            self.status_label.config(text="🟢 NO SHAKE RUNNING", fg='#00ff00')
+            self.start_button.config(text="STOP NO SHAKE", bg='#ff0000')
+            self.debug_label.config(text="No shake app started - smooth movement active...")
         else:
             self.running = False
             self.status_label.config(text="🔴 STOPPED", fg='#ff0000')
-            self.start_button.config(text="START FIXED APP", bg='#00ff00')
-            self.debug_label.config(text="Fixed app stopped")
+            self.start_button.config(text="START NO SHAKE", bg='#00ff00')
+            self.debug_label.config(text="No shake app stopped")
     
     def emergency_stop(self):
         """Emergency stop"""
         self.running = False
         self.status_label.config(text="🔴 EMERGENCY STOPPED", fg='#ff0000')
-        self.start_button.config(text="START FIXED APP", bg='#00ff00')
+        self.start_button.config(text="START NO SHAKE", bg='#00ff00')
         self.debug_label.config(text="Emergency stop activated")
     
     def test_movement(self):
-        """Test movement manually"""
+        """Test movement manually - no shaking"""
         try:
             aimdown = self.aimdown.get()
             smoothness = self.smoothness.get()
-            self.debug_label.config(text=f"Testing movement: {aimdown} pixels down")
+            self.debug_label.config(text=f"Testing smooth movement: {aimdown} pixels down")
             
-            # Test movement with random variation
+            # Test movement with smooth motion - no shaking
             for i in range(smoothness):
-                variation = random.randint(-2, 2)
+                # Smooth movement without random variation
+                step_size = aimdown // smoothness
                 if windows_api_available:
-                    user32.mouse_event(0x0001, 0, (aimdown//smoothness) + variation, 0, 0)
-                time.sleep(0.01)
+                    user32.mouse_event(0x0001, 0, step_size, 0, 0)
+                time.sleep(0.02)  # Consistent delay
             
-            self.debug_label.config(text=f"✅ Movement test completed")
+            self.debug_label.config(text=f"✅ Smooth movement test completed")
         except Exception as e:
             self.debug_label.config(text=f"❌ Movement test error: {str(e)}")
     
@@ -267,8 +268,8 @@ class FixedUltimateApp:
         except Exception as e:
             self.debug_label.config(text=f"❌ Auto-fix error: {str(e)}")
     
-    def move_mouse_fixed(self, dx, dy):
-        """Fixed mouse movement method with anti-detection"""
+    def move_mouse_no_shake(self, dx, dy):
+        """No shake mouse movement method"""
         try:
             if not windows_api_available:
                 return False
@@ -276,18 +277,15 @@ class FixedUltimateApp:
             # Get smoothness setting
             smoothness = self.smoothness.get()
             
-            # Calculate movement per step with random variation
+            # Calculate movement per step - smooth and consistent
             step_x = dx // smoothness
             step_y = dy // smoothness
             
-            # Move mouse smoothly with random variations (anti-detection)
+            # Move mouse smoothly without random variations (prevents shaking)
             for i in range(smoothness):
-                # Add random variation to avoid detection
-                variation_x = random.randint(-2, 2)
-                variation_y = random.randint(-2, 2)
-                
-                user32.mouse_event(0x0001, step_x + variation_x, step_y + variation_y, 0, 0)
-                time.sleep(random.uniform(0.002, 0.010))  # Random delay
+                # Consistent movement without random variation
+                user32.mouse_event(0x0001, step_x, step_y, 0, 0)
+                time.sleep(0.02)  # Consistent delay
             
             return True
         except Exception as e:
@@ -341,8 +339,8 @@ class FixedUltimateApp:
             return True  # Default to ON if error
     
     def start_auto_update_loop(self):
-        """Start the fixed auto-updating loop"""
-        def fixed_loop():
+        """Start the no shake auto-updating loop"""
+        def no_shake_loop():
             last_mouse_time = 0
             while True:
                 try:
@@ -360,28 +358,28 @@ class FixedUltimateApp:
                                 aimdown = self.aimdown.get()
                                 delay = self.delay.get()
                                 
-                                # Auto-strength adjustment
+                                # Auto-strength adjustment - minimal for no shaking
                                 if self.auto_strength.get():
-                                    # Randomly adjust strength based on "game conditions"
-                                    aimdown += random.randint(-2, 2)
-                                    aimdown = max(1, min(25, aimdown))
+                                    # Minimal adjustment to prevent shaking
+                                    aimdown += random.randint(-1, 1)
+                                    aimdown = max(1, min(10, aimdown))  # Limited range
                                 
                                 # Check if enough time has passed
                                 current_time = time.time()
                                 if current_time - last_mouse_time >= delay:
                                     # Update debug info
                                     self.success_count += 1
-                                    debug_text = f"🎯 FIXED APP - Auto recoil: {aimdown} pixels. Success: {self.success_count}"
+                                    debug_text = f"🎯 NO SHAKE - Smooth recoil: {aimdown} pixels. Success: {self.success_count}"
                                     self.debug_label.config(text=debug_text)
                                     
-                                    # Move mouse using fixed method
-                                    success = self.move_mouse_fixed(0, aimdown)
+                                    # Move mouse using no shake method
+                                    success = self.move_mouse_no_shake(0, aimdown)
                                     
                                     if success:
-                                        self.debug_label.config(text=f"✅ FIXED APP movement successful! Success: {self.success_count}")
+                                        self.debug_label.config(text=f"✅ NO SHAKE movement successful! Success: {self.success_count}")
                                     else:
                                         self.error_count += 1
-                                        self.debug_label.config(text=f"❌ FIXED APP movement failed! Errors: {self.error_count}")
+                                        self.debug_label.config(text=f"❌ NO SHAKE movement failed! Errors: {self.error_count}")
                                     
                                     # Update last mouse time
                                     last_mouse_time = current_time
@@ -402,17 +400,17 @@ class FixedUltimateApp:
                 except Exception as e:
                     # Handle errors and auto-fix
                     self.error_count += 1
-                    self.debug_label.config(text=f"Fixed app error: {str(e)} - Auto-fixing...")
+                    self.debug_label.config(text=f"No shake app error: {str(e)} - Auto-fixing...")
                     time.sleep(0.1)
         
         # Start the loop in a separate thread
-        self.fixed_thread = threading.Thread(target=fixed_loop, daemon=True)
-        self.fixed_thread.start()
+        self.no_shake_thread = threading.Thread(target=no_shake_loop, daemon=True)
+        self.no_shake_thread.start()
     
     def on_closing(self):
         """Handle closing"""
         if self.running:
-            if messagebox.askokcancel("Quit", "Fixed app is running. Quit?"):
+            if messagebox.askokcancel("Quit", "No shake app is running. Quit?"):
                 self.root.destroy()
         else:
             self.root.destroy()
@@ -420,7 +418,7 @@ class FixedUltimateApp:
 def main():
     try:
         root = tk.Tk()
-        app = FixedUltimateApp(root)
+        app = NoShakeApp(root)
         root.protocol("WM_DELETE_WINDOW", app.on_closing)
         root.mainloop()
     except Exception as e:
