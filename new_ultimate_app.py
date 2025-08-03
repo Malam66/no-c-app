@@ -50,7 +50,6 @@ class NewUltimateApp:
         self.auto_fire = tk.BooleanVar(value=False)
         self.rapid_fire = tk.BooleanVar(value=False)
         self.trigger_bot = tk.BooleanVar(value=False)
-        self.esp_enabled = tk.BooleanVar(value=False)
         self.auto_reload = tk.BooleanVar(value=False)
         self.auto_scope = tk.BooleanVar(value=False)
         self.anti_recoil_strength = tk.IntVar(value=10)
@@ -309,15 +308,6 @@ class NewUltimateApp:
         
         tk.Checkbutton(trigger_frame, text="🎯 TRIGGER BOT", 
                       variable=self.trigger_bot, bg='#222222', fg='#ffffff',
-                      selectcolor='#333333', activebackground='#222222',
-                      activeforeground='#ffffff', font=('Arial', 11)).pack(anchor='w')
-        
-        # ESP
-        esp_frame = tk.Frame(features_frame, bg='#222222')
-        esp_frame.pack(fill='x', padx=15, pady=5)
-        
-        tk.Checkbutton(esp_frame, text="👁️ ESP (Wallhack)", 
-                      variable=self.esp_enabled, bg='#222222', fg='#ffffff',
                       selectcolor='#333333', activebackground='#222222',
                       activeforeground='#ffffff', font=('Arial', 11)).pack(anchor='w')
         
@@ -730,7 +720,6 @@ class NewUltimateApp:
                         if self.auto_fire.get(): features.append("Auto Fire")
                         if self.rapid_fire.get(): features.append("Rapid Fire")
                         if self.trigger_bot.get(): features.append("Trigger Bot")
-                        if self.esp_enabled.get(): features.append("ESP")
                         
                         feature_text = ", ".join(features) if features else "None"
                         self.info_label.config(text=f"Auto-updating... Success: {self.success_count}, Errors: {self.error_count}, Aim Assist: {aim_status}, Features: {feature_text}")
