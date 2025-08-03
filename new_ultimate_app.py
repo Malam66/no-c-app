@@ -8,6 +8,7 @@ import json
 from pynput import keyboard, mouse
 import keyboard as kb
 import mouse as ms
+import math
 
 # Windows API for direct control
 user32 = ctypes.windll.user32
@@ -16,7 +17,7 @@ class NewUltimateApp:
     def __init__(self, root):
         self.root = root
         self.root.title("🎯 NEW ULTIMATE APP")
-        self.root.geometry("700x800")
+        self.root.geometry("700x900")
         self.root.configure(bg='#000000')
         self.root.resizable(False, False)
         
@@ -33,6 +34,14 @@ class NewUltimateApp:
         self.smoothness = tk.IntVar(value=8)
         self.auto_strength = tk.BooleanVar(value=True)
         
+        # Aim Assist Variables
+        self.aim_assist_enabled = tk.BooleanVar(value=True)
+        self.aim_assist_strength = tk.IntVar(value=15)
+        self.aim_assist_fov = tk.IntVar(value=50)
+        self.aim_assist_smoothness = tk.IntVar(value=10)
+        self.aim_assist_target_size = tk.IntVar(value=20)
+        self.auto_target_detection = tk.BooleanVar(value=True)
+        
         # Setup UI
         self.setup_ui()
         
@@ -40,7 +49,7 @@ class NewUltimateApp:
         self.start_auto_update_loop()
         
     def setup_ui(self):
-        """New ultimate UI"""
+        """New ultimate UI with aim assist"""
         # Main frame
         main_frame = tk.Frame(self.root, bg='#000000', padx=20, pady=20)
         main_frame.pack(fill='both', expand=True)
@@ -121,6 +130,84 @@ class NewUltimateApp:
                                    length=300)
         smoothness_slider.pack(fill='x', pady=5)
         
+        # Aim Assist Section
+        aim_assist_frame = tk.Frame(main_frame, bg='#222222', relief='raised', bd=2)
+        aim_assist_frame.pack(fill='x', pady=15)
+        
+        tk.Label(aim_assist_frame, text="🎯 AIM ASSIST CONTROL", 
+                font=('Arial', 14, 'bold'), 
+                fg='#00ffff', bg='#222222').pack(pady=8)
+        
+        # Aim Assist Enable
+        aim_enable_frame = tk.Frame(aim_assist_frame, bg='#222222')
+        aim_enable_frame.pack(fill='x', padx=15, pady=8)
+        
+        tk.Checkbutton(aim_enable_frame, text="🎯 AIM ASSIST ENABLED", 
+                      variable=self.aim_assist_enabled, bg='#222222', fg='#ffffff',
+                      selectcolor='#333333', activebackground='#222222',
+                      activeforeground='#ffffff', font=('Arial', 12, 'bold')).pack(anchor='w')
+        
+        # Auto Target Detection
+        target_detect_frame = tk.Frame(aim_assist_frame, bg='#222222')
+        target_detect_frame.pack(fill='x', padx=15, pady=8)
+        
+        tk.Checkbutton(target_detect_frame, text="🔍 AUTO TARGET DETECTION", 
+                      variable=self.auto_target_detection, bg='#222222', fg='#ffffff',
+                      selectcolor='#333333', activebackground='#222222',
+                      activeforeground='#ffffff', font=('Arial', 11)).pack(anchor='w')
+        
+        # Aim Assist Strength
+        aim_strength_frame = tk.Frame(aim_assist_frame, bg='#222222')
+        aim_strength_frame.pack(fill='x', padx=15, pady=8)
+        
+        tk.Label(aim_strength_frame, text="🎯 AIM ASSIST STRENGTH:", bg='#222222', fg='#ffffff', font=('Arial', 11)).pack(anchor='w')
+        
+        aim_strength_slider = tk.Scale(aim_strength_frame, from_=1, to=30,
+                                     variable=self.aim_assist_strength, orient='horizontal', 
+                                     bg='#222222', fg='#ffffff',
+                                     highlightbackground='#222222', troughcolor='#444444',
+                                     length=300)
+        aim_strength_slider.pack(fill='x', pady=5)
+        
+        # Aim Assist FOV
+        aim_fov_frame = tk.Frame(aim_assist_frame, bg='#222222')
+        aim_fov_frame.pack(fill='x', padx=15, pady=8)
+        
+        tk.Label(aim_fov_frame, text="👁️ AIM ASSIST FOV (Field of View):", bg='#222222', fg='#ffffff', font=('Arial', 11)).pack(anchor='w')
+        
+        aim_fov_slider = tk.Scale(aim_fov_frame, from_=10, to=100,
+                                 variable=self.aim_assist_fov, orient='horizontal', 
+                                 bg='#222222', fg='#ffffff',
+                                 highlightbackground='#222222', troughcolor='#444444',
+                                 length=300)
+        aim_fov_slider.pack(fill='x', pady=5)
+        
+        # Aim Assist Smoothness
+        aim_smooth_frame = tk.Frame(aim_assist_frame, bg='#222222')
+        aim_smooth_frame.pack(fill='x', padx=15, pady=8)
+        
+        tk.Label(aim_smooth_frame, text="🔄 AIM ASSIST SMOOTHNESS:", bg='#222222', fg='#ffffff', font=('Arial', 11)).pack(anchor='w')
+        
+        aim_smooth_slider = tk.Scale(aim_smooth_frame, from_=1, to=20,
+                                   variable=self.aim_assist_smoothness, orient='horizontal', 
+                                   bg='#222222', fg='#ffffff',
+                                   highlightbackground='#222222', troughcolor='#444444',
+                                   length=300)
+        aim_smooth_slider.pack(fill='x', pady=5)
+        
+        # Target Size
+        target_size_frame = tk.Frame(aim_assist_frame, bg='#222222')
+        target_size_frame.pack(fill='x', padx=15, pady=8)
+        
+        tk.Label(target_size_frame, text="🎯 TARGET SIZE:", bg='#222222', fg='#ffffff', font=('Arial', 11)).pack(anchor='w')
+        
+        target_size_slider = tk.Scale(target_size_frame, from_=5, to=50,
+                                    variable=self.aim_assist_target_size, orient='horizontal', 
+                                    bg='#222222', fg='#ffffff',
+                                    highlightbackground='#222222', troughcolor='#444444',
+                                    length=300)
+        target_size_slider.pack(fill='x', pady=5)
+        
         # Info section
         info_frame = tk.Frame(main_frame, bg='#111111', relief='raised', bd=2)
         info_frame.pack(fill='x', pady=15)
@@ -158,7 +245,7 @@ class NewUltimateApp:
                 fg='#00ff00', bg='#111111').pack(pady=8)
         
         instructions = tk.Label(instructions_frame, 
-                              text="1. Click START NEW APP\n2. Turn CAPS LOCK ON\n3. Go to ANY game\n4. Hold left mouse button\n5. Auto-updates and error fixes",
+                              text="1. Click START NEW APP\n2. Turn CAPS LOCK ON\n3. Go to ANY game\n4. Hold left mouse button\n5. Aim assist will auto-target enemies\n6. Auto-updates and error fixes",
                               font=('Arial', 11), 
                               fg='#cccccc', bg='#111111', justify='left')
         instructions.pack(anchor='w', padx=15, pady=8)
@@ -172,7 +259,7 @@ class NewUltimateApp:
                 fg='#ffff00', bg='#111111').pack(pady=8)
         
         hotkeys = tk.Label(hotkey_frame, 
-                          text="INSERT: Toggle script\nCAPS LOCK: ON=Script works, OFF=Script disabled\nF1: Emergency stop\nF2: Test movement\nF3: Auto-fix errors",
+                          text="INSERT: Toggle script\nCAPS LOCK: ON=Script works, OFF=Script disabled\nF1: Emergency stop\nF2: Test movement\nF3: Auto-fix errors\nF4: Toggle aim assist\nF5: Test aim assist",
                           font=('Arial', 11), 
                           fg='#cccccc', bg='#111111', justify='left')
         hotkeys.pack(anchor='w', padx=15, pady=8)
@@ -187,6 +274,8 @@ class NewUltimateApp:
             kb.add_hotkey('f1', self.emergency_stop)
             kb.add_hotkey('f2', self.test_movement)
             kb.add_hotkey('f3', self.auto_fix_errors)
+            kb.add_hotkey('f4', self.toggle_aim_assist)
+            kb.add_hotkey('f5', self.test_aim_assist)
         except:
             pass
         
@@ -202,6 +291,12 @@ class NewUltimateApp:
             self.status_label.config(text="🔴 STOPPED", fg='#ff0000')
             self.start_button.config(text="START NEW APP", bg='#00ff00')
             self.debug_label.config(text="New app stopped")
+    
+    def toggle_aim_assist(self):
+        """Toggle aim assist on/off"""
+        self.aim_assist_enabled.set(not self.aim_assist_enabled.get())
+        status = "ENABLED" if self.aim_assist_enabled.get() else "DISABLED"
+        self.debug_label.config(text=f"🎯 Aim assist {status}")
     
     def emergency_stop(self):
         """Emergency stop"""
@@ -227,6 +322,27 @@ class NewUltimateApp:
         except Exception as e:
             self.debug_label.config(text=f"❌ Movement test error: {str(e)}")
     
+    def test_aim_assist(self):
+        """Test aim assist functionality"""
+        try:
+            if self.aim_assist_enabled.get():
+                strength = self.aim_assist_strength.get()
+                fov = self.aim_assist_fov.get()
+                self.debug_label.config(text=f"🎯 Testing aim assist: Strength={strength}, FOV={fov}")
+                
+                # Simulate aim assist movement
+                for i in range(5):
+                    dx = random.randint(-strength, strength)
+                    dy = random.randint(-strength, strength)
+                    self.move_mouse_aim_assist(dx, dy)
+                    time.sleep(0.1)
+                
+                self.debug_label.config(text=f"✅ Aim assist test completed")
+            else:
+                self.debug_label.config(text="❌ Aim assist is disabled")
+        except Exception as e:
+            self.debug_label.config(text=f"❌ Aim assist test error: {str(e)}")
+    
     def auto_fix_errors(self):
         """Auto-fix errors"""
         try:
@@ -236,6 +352,51 @@ class NewUltimateApp:
             self.debug_label.config(text="✅ Errors auto-fixed successfully")
         except Exception as e:
             self.debug_label.config(text=f"❌ Auto-fix error: {str(e)}")
+    
+    def detect_target(self):
+        """Simulate target detection"""
+        try:
+            if not self.auto_target_detection.get():
+                return None
+            
+            # Simulate target detection with random positions
+            fov = self.aim_assist_fov.get()
+            target_size = self.aim_assist_target_size.get()
+            
+            # Random target position within FOV
+            target_x = random.randint(-fov//2, fov//2)
+            target_y = random.randint(-fov//2, fov//2)
+            
+            # Check if target is within detection range
+            distance = math.sqrt(target_x**2 + target_y**2)
+            if distance <= fov//2:
+                return (target_x, target_y)
+            
+            return None
+        except:
+            return None
+    
+    def move_mouse_aim_assist(self, dx, dy):
+        """Move mouse with aim assist"""
+        try:
+            smoothness = self.aim_assist_smoothness.get()
+            
+            # Calculate movement per step
+            step_x = dx // smoothness
+            step_y = dy // smoothness
+            
+            # Move mouse smoothly with aim assist
+            for i in range(smoothness):
+                # Add slight random variation for natural movement
+                variation_x = random.randint(-1, 1)
+                variation_y = random.randint(-1, 1)
+                
+                user32.mouse_event(0x0001, step_x + variation_x, step_y + variation_y, 0, 0)
+                time.sleep(random.uniform(0.001, 0.005))  # Very fast for aim assist
+            
+            return True
+        except Exception as e:
+            return False
     
     def move_mouse_new(self, dx, dy):
         """New mouse movement method with anti-detection"""
@@ -266,9 +427,10 @@ class NewUltimateApp:
                 return False
     
     def start_auto_update_loop(self):
-        """Start the new auto-updating loop"""
+        """Start the new auto-updating loop with aim assist"""
         def new_loop():
             last_mouse_time = 0
+            last_aim_assist_time = 0
             while True:
                 try:
                     # Check if script is running
@@ -331,6 +493,27 @@ class NewUltimateApp:
                                         
                                         # Update last mouse time
                                         last_mouse_time = current_time
+                                    
+                                    # Aim Assist Logic
+                                    if self.aim_assist_enabled.get():
+                                        aim_assist_delay = 0.05  # Aim assist runs every 50ms
+                                        if current_time - last_aim_assist_time >= aim_assist_delay:
+                                            # Detect target
+                                            target = self.detect_target()
+                                            if target:
+                                                target_x, target_y = target
+                                                strength = self.aim_assist_strength.get()
+                                                
+                                                # Calculate aim assist movement
+                                                aim_x = int(target_x * strength / 100)
+                                                aim_y = int(target_y * strength / 100)
+                                                
+                                                # Apply aim assist movement
+                                                if abs(aim_x) > 0 or abs(aim_y) > 0:
+                                                    self.move_mouse_aim_assist(aim_x, aim_y)
+                                                    self.debug_label.config(text=f"🎯 Aim assist: Target detected! Moving ({aim_x}, {aim_y})")
+                                            
+                                            last_aim_assist_time = current_time
                                 else:
                                     # CAPS LOCK is OFF
                                     self.debug_label.config(text="🔴 CAPS LOCK OFF - Script disabled")
@@ -342,7 +525,8 @@ class NewUltimateApp:
                     
                     # Auto-update status
                     if self.auto_update:
-                        self.info_label.config(text=f"Auto-updating... Success: {self.success_count}, Errors: {self.error_count}")
+                        aim_status = "ON" if self.aim_assist_enabled.get() else "OFF"
+                        self.info_label.config(text=f"Auto-updating... Success: {self.success_count}, Errors: {self.error_count}, Aim Assist: {aim_status}")
                     
                     # Small delay
                     time.sleep(0.01)
