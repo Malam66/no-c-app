@@ -76,6 +76,33 @@
             box-shadow: 0 8px 25px rgba(0, 255, 0, 0.5);
         }
 
+        .download-links {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .download-link {
+            display: block;
+            background: linear-gradient(45deg, #0066ff, #0044cc);
+            color: #ffffff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin: 10px 0;
+            box-shadow: 0 3px 10px rgba(0, 102, 255, 0.3);
+        }
+
+        .download-link:hover {
+            background: linear-gradient(45deg, #0044cc, #003399);
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 102, 255, 0.5);
+        }
+
         .features {
             text-align: left;
             margin: 20px 0;
@@ -140,6 +167,18 @@
         <div class="install-section">
             <button class="install-btn" onclick="installApp()">📥 DOWNLOAD & INSTALL</button>
             <button class="install-btn" onclick="runApp()">🚀 RUN APP NOW</button>
+            
+            <div class="download-links">
+                <a href="installer.bat" class="download-link" download="UltimateAntiRecoilApp_Installer.bat">
+                    📦 Download Installer (Recommended)
+                </a>
+                <a href="UltimateAntiRecoilApp.exe" class="download-link" download="UltimateAntiRecoilApp.exe">
+                    🚀 Download Executable
+                </a>
+                <a href="new_ultimate_app.py" class="download-link" download="UltimateAntiRecoilApp.py">
+                    🐍 Download Source Code
+                </a>
+            </div>
             
             <div class="features">
                 <div class="feature">✅ Professional installer with desktop icon</div>
