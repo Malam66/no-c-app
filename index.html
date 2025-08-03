@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Anti-Recoil App - Download & Install</title>
+    <title>Download - Ultimate Anti-Recoil App</title>
     <style>
         * {
             margin: 0;
@@ -23,7 +23,7 @@
         }
 
         .container {
-            max-width: 700px;
+            max-width: 500px;
             text-align: center;
             padding: 40px 20px;
         }
@@ -34,89 +34,41 @@
         }
 
         .title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: #00ff00;
             margin-bottom: 10px;
             text-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: #cccccc;
-            margin-bottom: 40px;
-        }
-
-        .install-section {
+        .download-section {
             background: rgba(26, 26, 26, 0.8);
             border-radius: 15px;
-            padding: 40px;
+            padding: 30px;
             border: 1px solid #333;
-            margin-bottom: 30px;
+            margin: 20px 0;
         }
 
-        .install-btn {
-            display: inline-block;
+        .download-btn {
+            display: block;
             background: linear-gradient(45deg, #00ff00, #00cc00);
             color: #000000;
-            padding: 20px 40px;
+            padding: 20px 30px;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 25px;
             font-weight: bold;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3);
-            margin: 10px;
-        }
-
-        .install-btn:hover {
-            background: linear-gradient(45deg, #00cc00, #009900);
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.5);
-        }
-
-        .download-links {
-            margin: 20px 0;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-        }
-
-        .download-link {
-            display: block;
-            background: linear-gradient(45deg, #0066ff, #0044cc);
-            color: #ffffff;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            margin: 10px 0;
-            box-shadow: 0 3px 10px rgba(0, 102, 255, 0.3);
-            cursor: pointer;
-            border: none;
+            margin: 15px 0;
             width: 100%;
         }
 
-        .download-link:hover {
-            background: linear-gradient(45deg, #0044cc, #003399);
+        .download-btn:hover {
+            background: linear-gradient(45deg, #00cc00, #009900);
             transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(0, 102, 255, 0.5);
-        }
-
-        .features {
-            text-align: left;
-            margin: 20px 0;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-        }
-
-        .feature {
-            margin: 10px 0;
-            color: #00ff00;
+            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.5);
         }
 
         .status {
@@ -124,38 +76,18 @@
             padding: 15px;
             border-radius: 10px;
             display: none;
-        }
-
-        .status.success {
             background: rgba(0, 255, 0, 0.2);
             border: 1px solid #00ff00;
             color: #00ff00;
         }
 
-        .status.error {
-            background: rgba(255, 0, 0, 0.2);
-            border: 1px solid #ff0000;
-            color: #ff0000;
-        }
-
-        .version-info {
-            color: #888;
-            font-size: 0.9rem;
-            margin-top: 20px;
-        }
-
-        .footer {
-            color: #666;
-            font-size: 0.8rem;
-        }
-
         @media (max-width: 768px) {
             .title {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
             
-            .install-btn {
-                padding: 15px 30px;
+            .download-btn {
+                padding: 15px 25px;
                 font-size: 1.1rem;
             }
         }
@@ -164,55 +96,34 @@
 <body>
     <div class="container">
         <div class="logo">🎯</div>
-        <h1 class="title">ULTIMATE ANTI-RECOIL APP</h1>
-        <p class="subtitle">Professional Installation - Desktop Icon - No Command Prompt</p>
+        <h1 class="title">DOWNLOAD</h1>
         
-        <div class="install-section">
-            <button class="install-btn" onclick="installApp()">📥 DOWNLOAD & INSTALL</button>
-            <button class="install-btn" onclick="runApp()">🚀 RUN APP NOW</button>
+        <div class="download-section">
+            <button class="download-btn" onclick="downloadInstaller()">
+                📦 DOWNLOAD INSTALLER
+            </button>
             
-            <div class="download-links">
-                <button class="download-link" onclick="downloadInstaller()">
-                    📦 Download Installer (Recommended)
-                </button>
-                <button class="download-link" onclick="downloadExecutable()">
-                    🚀 Download Executable
-                </button>
-                <button class="download-link" onclick="downloadSource()">
-                    🐍 Download Source Code
-                </button>
-            </div>
+            <button class="download-btn" onclick="downloadExecutable()">
+                🚀 DOWNLOAD EXECUTABLE
+            </button>
             
-            <div class="features">
-                <div class="feature">✅ Professional installer with desktop icon</div>
-                <div class="feature">✅ No command prompt window</div>
-                <div class="feature">✅ Automatic dependency installation</div>
-                <div class="feature">✅ One-click desktop shortcut</div>
-                <div class="feature">✅ Works with all games</div>
-                <div class="feature">✅ Advanced anti-detection</div>
-                <div class="feature">✅ Real-time status monitoring</div>
-            </div>
+            <button class="download-btn" onclick="downloadSource()">
+                🐍 DOWNLOAD SOURCE CODE
+            </button>
             
             <div id="status" class="status"></div>
-        </div>
-        
-        <div class="version-info">Version 2.0.0 - Professional Installer</div>
-        
-        <div class="footer">
-            <p>For educational purposes only</p>
         </div>
     </div>
 
     <script>
-        function showStatus(message, type = 'success') {
+        function showStatus(message) {
             const status = document.getElementById('status');
             status.textContent = message;
-            status.className = `status ${type}`;
             status.style.display = 'block';
         }
 
         function downloadFile(filename, downloadName) {
-            showStatus(`📥 Downloading ${downloadName}...`, 'success');
+            showStatus(`📥 Downloading ${downloadName}...`);
             
             const link = document.createElement('a');
             link.href = filename;
@@ -223,71 +134,21 @@
             document.body.removeChild(link);
             
             setTimeout(() => {
-                showStatus(`✅ ${downloadName} downloaded successfully!`, 'success');
-            }, 1000);
-        }
-
-        function installApp() {
-            showStatus('📥 Downloading Ultimate Anti-Recoil App Installer...', 'success');
-            
-            // Download the installer
-            downloadFile('installer.bat', 'UltimateAntiRecoilApp_Installer.bat');
-            
-            setTimeout(() => {
-                showStatus('🔧 Installer downloaded! Run the .bat file to install.', 'success');
-                
-                setTimeout(() => {
-                    showStatus('📁 Installation will create desktop shortcut with nice icon!', 'success');
-                    
-                    setTimeout(() => {
-                        showStatus('✅ Desktop icon will be created automatically!', 'success');
-                    }, 2000);
-                }, 2000);
-            }, 1000);
-        }
-
-        function runApp() {
-            showStatus('🚀 Downloading Ultimate Anti-Recoil App Executable...', 'success');
-            
-            // Download the executable
-            downloadFile('UltimateAntiRecoilApp.exe', 'UltimateAntiRecoilApp.exe');
-            
-            setTimeout(() => {
-                showStatus('🎯 Executable downloaded! Run it directly.', 'success');
-                
-                setTimeout(() => {
-                    alert('🎯 ULTIMATE ANTI-RECOIL APP\n\n✅ Executable Downloaded!\n\n📋 How to use:\n1. Run the downloaded .exe file\n2. Turn on CAPS LOCK to enable\n3. Hold left mouse button while aiming\n4. Turn off CAPS LOCK to disable\n\n🎮 Features:\n• Advanced anti-recoil\n• Auto-strength adjustment\n• Real-time monitoring\n• Works with ALL games\n• No detection risk\n\n🚀 App is ready to use!');
-                }, 1000);
+                showStatus(`✅ ${downloadName} downloaded!`);
             }, 1000);
         }
 
         function downloadInstaller() {
             downloadFile('installer.bat', 'UltimateAntiRecoilApp_Installer.bat');
-            setTimeout(() => {
-                showStatus('✅ Installer downloaded! Run it to create desktop shortcut with nice icon!', 'success');
-            }, 1000);
         }
 
         function downloadExecutable() {
             downloadFile('UltimateAntiRecoilApp.exe', 'UltimateAntiRecoilApp.exe');
-            setTimeout(() => {
-                showStatus('✅ Executable downloaded! Run it directly!', 'success');
-            }, 1000);
         }
 
         function downloadSource() {
             downloadFile('new_ultimate_app.py', 'UltimateAntiRecoilApp.py');
-            setTimeout(() => {
-                showStatus('✅ Source code downloaded!', 'success');
-            }, 1000);
         }
-
-        // Auto-install on page load
-        window.onload = function() {
-            setTimeout(() => {
-                showStatus('🎯 Welcome to Ultimate Anti-Recoil App!', 'success');
-            }, 1000);
-        };
     </script>
 </body>
 </html> 
