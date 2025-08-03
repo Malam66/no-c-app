@@ -7,11 +7,13 @@ def create_download_package():
     
     # Files to include in the download package
     files_to_include = [
+        'improved_no_recoil_app.py',
         'no_recoil_app.py',
         'advanced_no_recoil.py',
         'launcher.py',
         'setup.py',
         'requirements.txt',
+        'run_improved_app.bat',
         'run_launcher.bat',
         'run_no_recoil.bat',
         'config_1.json',
