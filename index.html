@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>🎯 Ultimate Gaming App - Professional Gaming Assistant</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -193,6 +194,78 @@
         }
 
         .feature-card::before {
+=======
+    <title>🎯 Ultimate Gaming App</title>
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: #ffffff; 
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 50px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 0;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 20px;
+            border: 2px solid #00ff00;
+        }
+        
+        .header h1 {
+            font-size: 4em;
+            color: #00ff00;
+            text-shadow: 0 0 30px #00ff00;
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 20px #00ff00; }
+            to { text-shadow: 0 0 30px #00ff00, 0 0 40px #00ff00; }
+        }
+        
+        .header p {
+            font-size: 1.4em;
+            color: #cccccc;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature::before {
+>>>>>>> b9b71dba30ddf845f5aaa80f21e47d2b4ed64993
             content: '';
             position: absolute;
             top: 0;
@@ -200,6 +273,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+<<<<<<< HEAD
             transition: left 0.8s;
         }
 
@@ -283,6 +357,45 @@
             overflow: hidden;
         }
 
+=======
+            transition: left 0.5s;
+        }
+        
+        .feature:hover::before {
+            left: 100%;
+        }
+        
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 0, 0.2);
+        }
+        
+        .feature h3 {
+            color: #00ff00;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature p {
+            color: #cccccc;
+            font-size: 1.1em;
+        }
+        
+        .download-section {
+            text-align: center;
+            margin: 60px 0;
+            padding: 40px;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 20px;
+            border: 3px solid #00ff00;
+            position: relative;
+            overflow: hidden;
+        }
+        
+>>>>>>> b9b71dba30ddf845f5aaa80f21e47d2b4ed64993
         .download-section::before {
             content: '';
             position: absolute;
@@ -291,6 +404,7 @@
             width: 200%;
             height: 200%;
             background: conic-gradient(from 0deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+<<<<<<< HEAD
             animation: rotate 8s linear infinite;
         }
 
@@ -452,10 +566,129 @@
         .scroll-reveal.revealed {
             opacity: 1;
             transform: translateY(0);
+=======
+            animation: rotate 4s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .download-section > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .download-btn {
+            background: linear-gradient(45deg, #00ff00, #00dd00);
+            color: #000000;
+            padding: 18px 35px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            margin: 15px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.3);
+            font-size: 1.1em;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 255, 0, 0.4);
+        }
+        
+        .installation {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .installation h3 {
+            color: #00ff00;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .installation ol {
+            text-align: left;
+            margin-left: 30px;
+        }
+        
+        .installation li {
+            margin: 15px 0;
+            color: #cccccc;
+            font-size: 1.1em;
+        }
+        
+        .code {
+            background: #333333;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            margin: 10px 0;
+            border-left: 4px solid #00ff00;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+        
+        .stat h4 {
+            color: #00ff00;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .stat p {
+            color: #cccccc;
+            font-size: 1.1em;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888888;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .container {
+                padding: 30px 15px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+>>>>>>> b9b71dba30ddf845f5aaa80f21e47d2b4ed64993
         }
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-content">
@@ -641,5 +874,121 @@
             document.body.style.opacity = '1';
         });
     </script>
+=======
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Ultimate Gaming App</h1>
+            <p>Complete gaming assistant with anti-recoil and aim assist features. Professional-grade tools for enhanced gaming performance.</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat">
+                <h4>🔫</h4>
+                <p>Anti-Recoil</p>
+            </div>
+            <div class="stat">
+                <h4>🎯</h4>
+                <p>Aim Assist</p>
+            </div>
+            <div class="stat">
+                <h4>⚙️</h4>
+                <p>Customizable</p>
+            </div>
+            <div class="stat">
+                <h4>🛡️</h4>
+                <p>Anti-Ban</p>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🔫 Anti-Recoil System</h3>
+                <p>Advanced recoil compensation that works in all games. Hold your mouse button while shooting for automatic recoil control with customizable strength and timing.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>🎯 Improved Aim Assist</h3>
+                <p>Intelligent aim assistance with enemy movement detection. Provides precise aim help with minimal shaking and maximum accuracy.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>⚙️ Customizable Settings</h3>
+                <p>Fine-tune every aspect of the app. Adjust strength, smoothness, timing, and sensitivity to match your gaming style perfectly.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>🛡️ Anti-Ban Protection</h3>
+                <p>Advanced protection features with human-like movement patterns, random delays, and variable corrections to keep your account safe.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>🚀 Easy Installation</h3>
+                <p>Simple setup process with automatic dependency installation. Works on Windows 10/11 with Python 3.7+ support.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>📱 Cross-Game Support</h3>
+                <p>Universal compatibility with all popular games. Tested and optimized for maximum performance across different gaming environments.</p>
+            </div>
+        </div>
+        
+        <div class="download-section">
+            <h2>📥 Download Ultimate Gaming App</h2>
+            <p>Get the complete gaming assistant with all premium features</p>
+            <br>
+            <a href="https://github.com/Malam66/no-c-app/archive/refs/heads/main.zip" class="download-btn">🎯 Download Latest Version</a>
+            <a href="https://github.com/Malam66/no-c-app" class="download-btn">📂 View on GitHub</a>
+            <a href="https://github.com/Malam66/no-c-app/releases" class="download-btn">📦 Releases</a>
+        </div>
+        
+        <div class="installation">
+            <h3>🚀 Quick Installation Guide</h3>
+            <ol>
+                <li><strong>Download the app</strong> - Click the download button above</li>
+                <li><strong>Extract the files</strong> - Unzip to your preferred location</li>
+                <li><strong>Install Python requirements:</strong>
+                    <div class="code">pip install -r requirements.txt</div>
+                </li>
+                <li><strong>Run the app:</strong>
+                    <div class="code">python new_ultimate_app.py</div>
+                </li>
+                <li><strong>Configure settings</strong> - Adjust strength, smoothness, and timing</li>
+                <li><strong>Start gaming</strong> - Hold mouse button for anti-recoil, move mouse for aim assist</li>
+            </ol>
+        </div>
+        
+        <div class="installation">
+            <h3>🎮 How to Use</h3>
+            <ol>
+                <li><strong>Launch the app</strong> - Run the Python executable</li>
+                <li><strong>Wait for startup protection</strong> - 10 seconds of full mouse control</li>
+                <li><strong>Enable features</strong> - Press CAPS LOCK to enable all features</li>
+                <li><strong>Anti-recoil</strong> - Hold mouse button while shooting for automatic recoil compensation</li>
+                <li><strong>Aim assist</strong> - Move mouse to activate intelligent aim assistance</li>
+                <li><strong>Test features</strong> - Use F2 for anti-recoil test, F5 for aim assist test</li>
+                <li><strong>Emergency stop</strong> - Press ESC for immediate feature disable</li>
+            </ol>
+        </div>
+        
+        <div class="installation">
+            <h3>⚙️ Key Features</h3>
+            <ol>
+                <li><strong>Anti-Recoil</strong> - Automatic recoil compensation with adjustable strength</li>
+                <li><strong>Aim Assist</strong> - Intelligent aim help with enemy movement detection</li>
+                <li><strong>Startup Protection</strong> - 10-second safety delay for full mouse control</li>
+                <li><strong>Customizable Settings</strong> - Adjust strength, smoothness, and timing</li>
+                <li><strong>Anti-Ban Protection</strong> - Human-like movements and patterns</li>
+                <li><strong>Cross-Game Support</strong> - Works with all popular games</li>
+                <li><strong>Easy Controls</strong> - Simple hotkeys for all features</li>
+            </ol>
+        </div>
+        
+        <div class="footer">
+            <p>🎯 Ultimate Gaming App - Professional gaming assistance tools</p>
+            <p>Built with ❤️ for the gaming community</p>
+            <p>Repository: <a href="https://github.com/Malam66/no-c-app" style="color: #00ff00;">https://github.com/Malam66/no-c-app</a></p>
+        </div>
+    </div>
+>>>>>>> b9b71dba30ddf845f5aaa80f21e47d2b4ed64993
 </body>
 </html> 

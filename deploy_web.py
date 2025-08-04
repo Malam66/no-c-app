@@ -1,0 +1,219 @@
+import os
+import shutil
+import subprocess
+
+def deploy_web():
+    """Deploy the app to web hosting"""
+    print("🌐 Deploying to web...")
+    
+    # Create web directory
+    if not os.path.exists("web"):
+        os.makedirs("web")
+    
+    # Copy main app file
+    shutil.copy("new_ultimate_app.py", "web/")
+    
+    # Copy requirements
+    if os.path.exists("requirements.txt"):
+        shutil.copy("requirements.txt", "web/")
+    
+    # Copy setup files
+    if os.path.exists("setup.py"):
+        shutil.copy("setup.py", "web/")
+    
+    # Copy README
+    if os.path.exists("README.md"):
+        shutil.copy("README.md", "web/")
+    
+    # Copy icons
+    if os.path.exists("app_icon.ico"):
+        shutil.copy("app_icon.ico", "web/")
+    if os.path.exists("app_icon.png"):
+        shutil.copy("app_icon.png", "web/")
+    
+    # Create index.html for web hosting
+    index_html = """<!DOCTYPE html>
+<html>
+<head>
+    <title>🎯 Ultimate Gaming App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: #ffffff; 
+            min-height: 100vh;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 50px 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 3em;
+            color: #00ff00;
+            text-shadow: 0 0 20px #00ff00;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 1.2em;
+            color: #cccccc;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        .feature h3 {
+            color: #00ff00;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        .download-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 15px;
+            border: 2px solid #00ff00;
+        }
+        .download-btn {
+            background: linear-gradient(45deg, #00ff00, #00dd00);
+            color: #000000;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 10px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 255, 0, 0.4);
+        }
+        .installation {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        .installation h3 {
+            color: #00ff00;
+            margin-bottom: 15px;
+        }
+        .installation ol {
+            text-align: left;
+            margin-left: 20px;
+        }
+        .installation li {
+            margin: 10px 0;
+            color: #cccccc;
+        }
+        .code {
+            background: #333333;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Ultimate Gaming App</h1>
+            <p>Complete gaming assistant with anti-recoil and aim assist</p>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🔫 Anti-Recoil</h3>
+                <p>Hold mouse button for automatic recoil compensation. Works in all games with customizable strength and timing.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>🎯 Improved Aim Assist</h3>
+                <p>Better tracking with less shaking. Detects enemy movement and provides precise aim assistance.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>⚙️ Customizable Settings</h3>
+                <p>Adjust strength, smoothness, timing, and sensitivity. Fine-tune the app for your gaming style.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>🛡️ Anti-Ban Protection</h3>
+                <p>Advanced protection features to keep your account safe. Human-like movements and patterns.</p>
+            </div>
+        </div>
+        
+        <div class="download-section">
+            <h2>📥 Download Ultimate Gaming App</h2>
+            <p>Get the complete gaming assistant with all features</p>
+            <br>
+            <a href="new_ultimate_app.py" class="download-btn">🎯 Download App</a>
+            <a href="requirements.txt" class="download-btn">📦 Requirements</a>
+            <a href="setup.py" class="download-btn">🔧 Setup</a>
+        </div>
+        
+        <div class="installation">
+            <h3>🚀 Installation Guide</h3>
+            <ol>
+                <li><strong>Download all files</strong> - Click the download buttons above</li>
+                <li><strong>Install Python requirements:</strong>
+                    <div class="code">pip install -r requirements.txt</div>
+                </li>
+                <li><strong>Run the app:</strong>
+                    <div class="code">python new_ultimate_app.py</div>
+                </li>
+                <li><strong>Configure settings</strong> - Adjust strength, smoothness, and timing</li>
+                <li><strong>Start gaming</strong> - Hold mouse button for anti-recoil, move mouse for aim assist</li>
+            </ol>
+        </div>
+        
+        <div class="installation">
+            <h3>🎮 How to Use</h3>
+            <ol>
+                <li><strong>Start the app</strong> - Run the Python file</li>
+                <li><strong>Wait for startup protection</strong> - 10 seconds of full mouse control</li>
+                <li><strong>Enable features</strong> - Press CAPS LOCK to enable</li>
+                <li><strong>Anti-recoil</strong> - Hold mouse button while shooting</li>
+                <li><strong>Aim assist</strong> - Move mouse for automatic assistance</li>
+                <li><strong>Test features</strong> - Use F2 for anti-recoil test, F5 for aim assist test</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>"""
+    
+    with open("web/index.html", "w", encoding="utf-8") as f:
+        f.write(index_html)
+    
+    print("✅ Web deployment files created")
+    print("📁 Web directory created with all files")
+    print("🌐 index.html created for web hosting")
+    print("📥 Ready to upload to web hosting service")
+
+if __name__ == "__main__":
+    deploy_web() 

@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 Pillow>=9.0.0
 pynput>=1.7.6
 keyboard>=0.13.5
 mouse>=0.7.1 
+=======
+flask==2.3.3
+gunicorn==21.2.0
+tkinter
+pynput
+keyboard
+mouse
+pillow
+>>>>>>> b9b71dba30ddf845f5aaa80f21e47d2b4ed64993

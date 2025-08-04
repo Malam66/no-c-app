@@ -19,6 +19,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+<<<<<<< HEAD
 MANIFEST
 
 # PyInstaller
@@ -98,12 +99,20 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+=======
+
+# Virtual Environment
+venv/
+env/
+ENV/
+>>>>>>> b9b71dba30ddf845f5aaa80f21e47d2b4ed64993
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+<<<<<<< HEAD
 *~
 
 # OS
@@ -121,3 +130,14 @@ Thumbs.db
 *.temp
 app_icon.ico
 app_icon.png 
+=======
+
+# OS
+.DS_Store
+Thumbs.db
+
+# App specific
+*.log
+temp/
+cache/
+>>>>>>> b9b71dba30ddf845f5aaa80f21e47d2b4ed64993

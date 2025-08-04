@@ -1,0 +1,30 @@
+{
+  "name": "ultimate-anti-recoil-app",
+  "version": "2.0.0",
+  "description": "Professional Windows anti-recoil application with GUI and desktop integration",
+  "main": "new_ultimate_app.py",
+  "scripts": {
+    "start": "python new_ultimate_app.py",
+    "build": "python setup.py build",
+    "install": "installer.bat",
+    "icon": "python create_nice_icon.py"
+  },
+  "keywords": [
+    "anti-recoil",
+    "gaming",
+    "windows",
+    "python",
+    "tkinter",
+    "mouse-control"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/ultimate-anti-recoil-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/ultimate-anti-recoil-app/issues"
+  },
+  "homepage": "https://github.com/yourusername/ultimate-anti-recoil-app#readme"
+}
