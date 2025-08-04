@@ -21,10 +21,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-            "url": "https://github.com/Malam66/strong-app.git"
+    "url": "https://github.com/yourusername/ultimate-anti-recoil-app.git"
   },
   "bugs": {
-            "url": "https://github.com/Malam66/strong-app/issues"
+    "url": "https://github.com/yourusername/ultimate-anti-recoil-app/issues"
   },
-          "homepage": "https://github.com/Malam66/strong-app#readme"
+  "homepage": "https://github.com/yourusername/ultimate-anti-recoil-app#readme"
 }

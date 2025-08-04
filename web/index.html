@@ -1,38 +1,4 @@
-import os
-import shutil
-import subprocess
-
-def deploy_web():
-    """Deploy the app to web hosting"""
-    print("🌐 Deploying to web...")
-    
-    # Create web directory
-    if not os.path.exists("web"):
-        os.makedirs("web")
-    
-    # Copy main app file
-    shutil.copy("new_ultimate_app.py", "web/")
-    
-    # Copy requirements
-    if os.path.exists("requirements.txt"):
-        shutil.copy("requirements.txt", "web/")
-    
-    # Copy setup files
-    if os.path.exists("setup.py"):
-        shutil.copy("setup.py", "web/")
-    
-    # Copy README
-    if os.path.exists("README.md"):
-        shutil.copy("README.md", "web/")
-    
-    # Copy icons
-    if os.path.exists("app_icon.ico"):
-        shutil.copy("app_icon.ico", "web/")
-    if os.path.exists("app_icon.png"):
-        shutil.copy("app_icon.png", "web/")
-    
-    # Create index.html for web hosting
-    index_html = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>🎯 Ultimate Gaming App</title>
@@ -205,15 +171,4 @@ def deploy_web():
         </div>
     </div>
 </body>
-</html>"""
-    
-    with open("web/index.html", "w", encoding="utf-8") as f:
-        f.write(index_html)
-    
-    print("✅ Web deployment files created")
-    print("📁 Web directory created with all files")
-    print("🌐 index.html created for web hosting")
-    print("📥 Ready to upload to web hosting service")
-
-if __name__ == "__main__":
-    deploy_web() 
+</html>

@@ -7,9 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -24,14 +23,14 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         
-    - name: Run tests
+    - name: Create deployment files
       run: |
-        python -c "import tkinter; print('Tkinter available')"
-        python -c "import pynput; print('Pynput available')"
+        python deploy_to_github.py
+        python deploy_web.py
         
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/main'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./web_deploy
+        publish_dir: ./web
+        force_orphan: true

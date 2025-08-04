@@ -24,4 +24,4 @@ Welcome to the Ultimate Anti-Recoil App GitHub Pages!
 
 ## 📞 Support
 
-For issues and questions, please visit our [GitHub repository](https://github.com/malam66/ultimate-anti-recoil-app).
+For issues and questions, please visit our [GitHub repository](https://github.com/yourusername/ultimate-anti-recoil-app).

@@ -210,6 +210,100 @@ For issues and questions, please visit our [GitHub repository](https://github.co
     
     print("✅ GitHub Pages content created")
 
+def deploy_to_github():
+    """Deploy the app to GitHub"""
+    print("🚀 Deploying to GitHub...")
+    
+    # Create release directory
+    if not os.path.exists("release"):
+        os.makedirs("release")
+    
+    # Copy main app file
+    shutil.copy("new_ultimate_app.py", "release/")
+    
+    # Copy requirements
+    if os.path.exists("requirements.txt"):
+        shutil.copy("requirements.txt", "release/")
+    
+    # Copy setup files
+    if os.path.exists("setup.py"):
+        shutil.copy("setup.py", "release/")
+    
+    # Copy README
+    if os.path.exists("README.md"):
+        shutil.copy("README.md", "release/")
+    
+    # Copy license
+    if os.path.exists("LICENSE"):
+        shutil.copy("LICENSE", "release/")
+    
+    # Copy icons
+    if os.path.exists("app_icon.ico"):
+        shutil.copy("app_icon.ico", "release/")
+    if os.path.exists("app_icon.png"):
+        shutil.copy("app_icon.png", "release/")
+    
+    # Create web installer
+    web_installer = """<!DOCTYPE html>
+<html>
+<head>
+    <title>Ultimate Gaming App - Download</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #1a1a1a; color: #ffffff; text-align: center; padding: 50px; }
+        .container { max-width: 600px; margin: 0 auto; background: #2a2a2a; padding: 30px; border-radius: 10px; }
+        .download-btn { background: #00ff00; color: #000000; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 10px; display: inline-block; }
+        .feature { background: #333333; padding: 15px; margin: 10px 0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Ultimate Gaming App</h1>
+        <p>Complete gaming assistant with anti-recoil and aim assist</p>
+        
+        <div class="feature">
+            <h3>🔫 Anti-Recoil</h3>
+            <p>Hold mouse button for automatic recoil compensation</p>
+        </div>
+        
+        <div class="feature">
+            <h3>🎯 Improved Aim Assist</h3>
+            <p>Better tracking with less shaking</p>
+        </div>
+        
+        <div class="feature">
+            <h3>⚙️ Customizable Settings</h3>
+            <p>Adjust strength, smoothness, and timing</p>
+        </div>
+        
+        <a href="new_ultimate_app.py" class="download-btn">📥 Download App</a>
+        <a href="requirements.txt" class="download-btn">📦 Download Requirements</a>
+        <a href="setup.py" class="download-btn">🔧 Download Setup</a>
+        
+        <h3>Installation:</h3>
+        <p>1. Download all files</p>
+        <p>2. Install Python requirements: pip install -r requirements.txt</p>
+        <p>3. Run the app: python new_ultimate_app.py</p>
+    </div>
+</body>
+</html>"""
+    
+    with open("release/web_installer.html", "w") as f:
+        f.write(web_installer)
+    
+    print("✅ Files prepared for GitHub deployment")
+    print("📁 Release directory created with all files")
+    print("🌐 Web installer created")
+    
+    # Git commands
+    try:
+        subprocess.run(["git", "add", "."], check=True)
+        subprocess.run(["git", "commit", "-m", "Deploy Ultimate Gaming App"], check=True)
+        subprocess.run(["git", "push"], check=True)
+        print("✅ Successfully deployed to GitHub!")
+    except subprocess.CalledProcessError:
+        print("⚠️ Git commands failed - please check your Git setup")
+        print("📁 Files are ready in the 'release' directory")
+
 def main():
     """Main deployment function"""
     print("🚀 Starting GitHub deployment preparation...")
